@@ -1,0 +1,15 @@
+C:\Users\bills\OneDrive\Documentos\NumberGuessingGame\NumberGuessingGame\NumberGuessingGame\bin\Debug\net7.0\NumberGuessingGame.exe
+C:\Users\bills\OneDrive\Documentos\NumberGuessingGame\NumberGuessingGame\NumberGuessingGame\bin\Debug\net7.0\NumberGuessingGame.deps.json
+C:\Users\bills\OneDrive\Documentos\NumberGuessingGame\NumberGuessingGame\NumberGuessingGame\bin\Debug\net7.0\NumberGuessingGame.runtimeconfig.json
+C:\Users\bills\OneDrive\Documentos\NumberGuessingGame\NumberGuessingGame\NumberGuessingGame\bin\Debug\net7.0\NumberGuessingGame.dll
+C:\Users\bills\OneDrive\Documentos\NumberGuessingGame\NumberGuessingGame\NumberGuessingGame\bin\Debug\net7.0\NumberGuessingGame.pdb
+C:\Users\bills\OneDrive\Documentos\NumberGuessingGame\NumberGuessingGame\NumberGuessingGame\obj\Debug\net7.0\NumberGuessingGame.csproj.AssemblyReference.cache
+C:\Users\bills\OneDrive\Documentos\NumberGuessingGame\NumberGuessingGame\NumberGuessingGame\obj\Debug\net7.0\NumberGuessingGame.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bills\OneDrive\Documentos\NumberGuessingGame\NumberGuessingGame\NumberGuessingGame\obj\Debug\net7.0\NumberGuessingGame.AssemblyInfoInputs.cache
+C:\Users\bills\OneDrive\Documentos\NumberGuessingGame\NumberGuessingGame\NumberGuessingGame\obj\Debug\net7.0\NumberGuessingGame.AssemblyInfo.cs
+C:\Users\bills\OneDrive\Documentos\NumberGuessingGame\NumberGuessingGame\NumberGuessingGame\obj\Debug\net7.0\NumberGuessingGame.csproj.CoreCompileInputs.cache
+C:\Users\bills\OneDrive\Documentos\NumberGuessingGame\NumberGuessingGame\NumberGuessingGame\obj\Debug\net7.0\NumberGuessingGame.dll
+C:\Users\bills\OneDrive\Documentos\NumberGuessingGame\NumberGuessingGame\NumberGuessingGame\obj\Debug\net7.0\refint\NumberGuessingGame.dll
+C:\Users\bills\OneDrive\Documentos\NumberGuessingGame\NumberGuessingGame\NumberGuessingGame\obj\Debug\net7.0\NumberGuessingGame.pdb
+C:\Users\bills\OneDrive\Documentos\NumberGuessingGame\NumberGuessingGame\NumberGuessingGame\obj\Debug\net7.0\NumberGuessingGame.genruntimeconfig.cache
+C:\Users\bills\OneDrive\Documentos\NumberGuessingGame\NumberGuessingGame\NumberGuessingGame\obj\Debug\net7.0\ref\NumberGuessingGame.dll
