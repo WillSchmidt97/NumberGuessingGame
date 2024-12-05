@@ -7,18 +7,15 @@ namespace NumberGuessingGame
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to number guessing game!\n\n");
-            Console.WriteLine("Let's make it simple, I will think about a number from 1 to 100 and you will have to guess the number I chose.");
-            Console.WriteLine("We have three levels of difficulty: \n");
+            Console.WriteLine("I'm thinking of a number between 1 and 100.");
+            Console.WriteLine("You have chances according to the difficulty chosen to guess the correct number.\n\n" +
+                                "Please select the difficult level");
 
-            Console.WriteLine($"EASY: {(int)DifficultyLevel.Easy} chances to guess the number\n" +
-                                $"MEDIUM: {(int)DifficultyLevel.Medium} chances to guess the number\n" +
-                                $"HARD: {(int)DifficultyLevel.Hard} chances to guess the number.");
+            Console.WriteLine($"1. EASY: ({(int)DifficultyLevel.Easy} chances)\n" +
+                                $"2. MEDIUM: ({(int)DifficultyLevel.Medium} chances)\n" +
+                                $"3. HARD: ({(int)DifficultyLevel.Hard} chances)");
 
-            Console.WriteLine("If you guess the number before you are out of tries, you win." +
-                                " But you run your tries to zero, I win. So, let's get started?\n\n");
-
-            Console.WriteLine("Type 1 if you want you want it easier, 2 if you want to play the medium level" +
-                                " or 3 if you want more challenge: ");
+            Console.WriteLine("\n\nEnter your choice: ");
 
             int difficultyChosen = Convert.ToInt32(Console.ReadLine());
 
@@ -34,22 +31,28 @@ namespace NumberGuessingGame
             Random random = new Random();
             int number = random.Next(1, 100);
 
-            Console.WriteLine("Let's get started!");
+            Console.WriteLine("Let's start the game!");
 
             int guessCounter = 1;
             bool isGuessed = false;
             while(difficultyLevel >= guessCounter)
             {
-                Console.WriteLine("Type your guess: ");
+                Console.WriteLine("Enter your guess: ");
                 int myGuess = Convert.ToInt32(Console.ReadLine());
 
                 if (myGuess == number)
                 {
-                    Console.WriteLine($"Congrat's! You guessed the number {number} using {guessCounter} atteempt(s)!");
+                    Console.WriteLine($"Congrat's! You guessed the correct number {number} in {guessCounter} atteempt(s)!");
                     isGuessed = true;
                     break;
                 }
-                else guessCounter++;
+                else
+                {
+                    if (number > myGuess) Console.WriteLine($"Incorrect! The number is greater than {myGuess}.");
+                    else Console.WriteLine($"Incorrect! The number is less than {myGuess}.");
+
+                    guessCounter++;
+                };
             }
 
             if (isGuessed == false) Console.WriteLine($"You are out of attempts! My number was {number}. Better luck next time!");
