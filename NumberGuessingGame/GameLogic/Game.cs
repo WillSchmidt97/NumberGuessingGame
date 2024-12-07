@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace NumberGuessingGame.GameLogic
 {
@@ -62,6 +63,7 @@ namespace NumberGuessingGame.GameLogic
             int number = random.Next(1, 100);
 
             Console.WriteLine("Let's start the game!");
+            var time = Stopwatch.StartNew();
 
             int guessCounter = 1;
             bool isGuessed = false;
@@ -76,7 +78,11 @@ namespace NumberGuessingGame.GameLogic
 
                 if (myGuess == number)
                 {
-                    Console.WriteLine($"Congrat's! You guessed the correct number {number} in {guessCounter} atteempt(s)!");
+                    time.Stop();
+                    int timeToGuess = (int)time.Elapsed.TotalSeconds;
+
+                    Console.WriteLine($"Congrat's! You guessed the correct number {number} in {guessCounter} atteempt(s)!" +
+                                        $"It took {timeToGuess} seconds for you to guess the number.");
                     isGuessed = true;
                     break;
                 }
