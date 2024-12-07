@@ -67,8 +67,9 @@ namespace NumberGuessingGame.GameLogic
             bool isGuessed = false;
             var stop = false;
             string choiceToStop = "";
-            while (gameMode == 1 ? this.difficultyLevel >= guessCounter
-                                    : stop == true)
+            while (gameMode == 1 ? 
+                this.difficultyLevel >= guessCounter
+                                    : !stop)
             {
                 Console.WriteLine("Enter your guess: ");
                 int myGuess = Convert.ToInt32(Console.ReadLine());
@@ -89,7 +90,7 @@ namespace NumberGuessingGame.GameLogic
                         Console.WriteLine("Do you want to stop? If so type Y/y: ");
                         choiceToStop = Console.ReadLine().ToLower();
 
-                        if (choiceToStop == "Y") break;
+                        if (choiceToStop == "y") stop = true;
                     }
 
                     guessCounter++;
@@ -98,7 +99,5 @@ namespace NumberGuessingGame.GameLogic
 
             if (isGuessed == false) Console.WriteLine($"You are out of attempts! My number was {number}. Better luck next time!");
         }
-
-
     }
 }
