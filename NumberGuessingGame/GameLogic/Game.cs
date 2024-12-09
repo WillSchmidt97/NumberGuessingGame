@@ -36,6 +36,13 @@ namespace NumberGuessingGame.GameLogic
                             "2: You decide when to stop.\n\n" +
                             "So, which way you want to play? (Please, type 1 or 2): ");
             gameMode = Int32.Parse(Console.ReadLine());
+
+            while (gameMode < 1 || gameMode > 2)
+            {
+                Console.WriteLine("Invalid option. Please, you have to chose option 1 or 2: ");
+
+                gameMode = Int32.Parse(Console.ReadLine());
+            }
         }
 
         private void GameDifficulty()
@@ -47,6 +54,14 @@ namespace NumberGuessingGame.GameLogic
             Console.WriteLine("\n\nEnter your choice: ");
 
             int difficultyChosen = Convert.ToInt32(Console.ReadLine());
+
+            while(difficultyChosen > 3 || difficultyChosen < 1)
+            {
+                Console.WriteLine("\nInvalid option. Please type 1 for easy, 2 for medium or 3 for hard.\n" +
+                    "Enter your choice: ");
+
+                difficultyChosen = Convert.ToInt32(Console.ReadLine());
+            }
 
             switch (difficultyChosen)
             {
@@ -75,6 +90,13 @@ namespace NumberGuessingGame.GameLogic
             {
                 Console.WriteLine("Enter your guess: ");
                 int myGuess = Convert.ToInt32(Console.ReadLine());
+
+                while (myGuess < 1 || myGuess > 100)
+                {
+                    Console.WriteLine("Invalid number. The number must be from 1 to 100.\n" +
+                        "Enter your guess: ");
+                    myGuess = Convert.ToInt32(Console.ReadLine());
+                }
 
                 if (myGuess == number)
                 {
