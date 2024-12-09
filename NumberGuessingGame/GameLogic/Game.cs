@@ -10,14 +10,15 @@ namespace NumberGuessingGame.GameLogic
     internal class Game
     {
         private int difficultyLevel;
+        private int gameMode;
         public void GameStart() 
         {
             Console.WriteLine("Welcome to number guessing game!");
             Console.WriteLine("I'm thinking of a number between 1 and 100.");
 
-            var gameMode = GameMode();
+            ChosenGameMode();
             
-            if (gameMode == 1)
+            if (gameMode == (int)GameMode.ModeOne)
             {
                 Console.WriteLine("You have chances according to the difficulty chosen to guess the correct number.\n\n" +
                     "Please select the difficult level");
@@ -25,18 +26,16 @@ namespace NumberGuessingGame.GameLogic
                 GameDifficulty();
             }
 
-            ProcessPlays(gameMode);
+            ProcessPlays();
         }
 
-        public int GameMode()
+        public void ChosenGameMode()
         {
             Console.WriteLine("Yuou have two ways of playing the game:\n" +
                             "1: You will have changes according to the difficulty chosen. When you get out of chances, the game finishes." +
                             "2: You decide when to stop.\n\n" +
                             "So, which way you want to play? (Please, type 1 or 2): ");
-            var gameMode = Int32.Parse(Console.ReadLine());
-
-            return gameMode;
+            gameMode = Int32.Parse(Console.ReadLine());
         }
 
         private void GameDifficulty()
@@ -57,7 +56,7 @@ namespace NumberGuessingGame.GameLogic
             }
         }
 
-        private void ProcessPlays(int gameMode)
+        private void ProcessPlays()
         {
             Random random = new Random();
             int number = random.Next(1, 100);
@@ -69,7 +68,8 @@ namespace NumberGuessingGame.GameLogic
             bool isGuessed = false;
             var stop = false;
             string choiceToStop = "";
-            while (gameMode == 1 ? 
+
+            while (gameMode == (int)GameMode.ModeOne ? 
                 this.difficultyLevel >= guessCounter
                                     : !stop)
             {
