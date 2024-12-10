@@ -127,5 +127,18 @@ namespace NumberGuessingGame.GameLogic
 
             if (isGuessed == false) Console.WriteLine($"You are out of attempts! My number was {number}. Better luck next time!");
         }
+
+        private void Hints(int rightNumber, int chosenNumber)
+        {
+            if (rightNumber % chosenNumber == 0)
+                Console.WriteLine($"My number is divisible by {chosenNumber}");
+
+            else if (chosenNumber % rightNumber == 0)
+                Console.WriteLine($"{chosenNumber} is divisible by my number!"); 
+
+            else
+                Console.WriteLine($"My number is not divisible by {chosenNumber} and" +
+                    $"{chosenNumber} is not divisible by my number!");
+        }
     }
 }
