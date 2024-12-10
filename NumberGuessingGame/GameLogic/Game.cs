@@ -113,6 +113,8 @@ namespace NumberGuessingGame.GameLogic
                     if (number > myGuess) Console.WriteLine($"Incorrect! The number is greater than {myGuess}.");
                     else Console.WriteLine($"Incorrect! The number is less than {myGuess}.");
 
+                    Hints(number, myGuess);
+
                     if (gameMode == 2)
                     {
                         Console.WriteLine("Do you want to stop? If so type Y/y: ");
@@ -138,7 +140,7 @@ namespace NumberGuessingGame.GameLogic
 
             else
                 Console.WriteLine($"My number is not divisible by {chosenNumber} and" +
-                    $"{chosenNumber} is not divisible by my number!");
+                    $" {chosenNumber} is not divisible by my number!");
         }
     }
 }
