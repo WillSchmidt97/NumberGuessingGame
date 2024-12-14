@@ -11,6 +11,7 @@ namespace NumberGuessingGame.GameLogic
     {
         private int difficultyLevel;
         private int gameMode;
+        private int hintsAvailable = 2;
         public void GameStart() 
         {
             Console.WriteLine("Welcome to number guessing game!");
@@ -82,7 +83,7 @@ namespace NumberGuessingGame.GameLogic
             int guessCounter = 1;
             bool isGuessed = false;
             var stop = false;
-            string choiceToStop = "";
+            string choiceToStop, hint = "";
 
             while (gameMode == (int)GameMode.ModeOne ? 
                 this.difficultyLevel >= guessCounter
@@ -113,7 +114,14 @@ namespace NumberGuessingGame.GameLogic
                     if (number > myGuess) Console.WriteLine($"Incorrect! The number is greater than {myGuess}.");
                     else Console.WriteLine($"Incorrect! The number is less than {myGuess}.");
 
-                    Hints(number, myGuess);
+                    Console.WriteLine("Do you want a hint?\n" +
+                        "YES: Press h\n" +
+                        "NO: Just press anything?");
+
+                    hint = Console.ReadLine().ToLower();
+
+                    if (hint == "h")
+                        Hints(number, myGuess);
 
                     if (gameMode == 2)
                     {
@@ -132,15 +140,15 @@ namespace NumberGuessingGame.GameLogic
 
         private void Hints(int rightNumber, int chosenNumber)
         {
-            if (rightNumber % chosenNumber == 0)
-                Console.WriteLine($"My number is divisible by {chosenNumber}");
+            if (hintsAvailable == 2)
+            {
+                if (rightNumber > 0 && rightNumber <= 50)
+                    Console.WriteLine("My number is between 1 and 50");
+                else Console.WriteLine("My number is between 51 and 100");
 
-            else if (chosenNumber % rightNumber == 0)
-                Console.WriteLine($"{chosenNumber} is divisible by my number!"); 
+                hintsAvailable--;
+            }
 
-            else
-                Console.WriteLine($"My number is not divisible by {chosenNumber} and" +
-                    $" {chosenNumber} is not divisible by my number!");
         }
     }
 }
