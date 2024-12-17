@@ -149,6 +149,14 @@ namespace NumberGuessingGame.GameLogic
                 hintsAvailable--;
             }
 
+            else if (hintsAvailable == 1)
+            {
+                if (rightNumber > 0 && rightNumber <= 25) Console.WriteLine("My number is among the first 25% of the total numbers.");
+                else if (rightNumber > 25 && rightNumber <= 50) Console.WriteLine("My number is in the bottom middle.");
+                else if (rightNumber > 50 && rightNumber <= 75) Console.WriteLine("My number is in the upper middle.");
+                else Console.WriteLine("My number is among the last 25% of the total numbers.");
+            }
+
         }
     }
 }
