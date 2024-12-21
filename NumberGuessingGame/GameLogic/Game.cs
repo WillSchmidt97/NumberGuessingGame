@@ -33,7 +33,7 @@ namespace NumberGuessingGame.GameLogic
         public void ChosenGameMode()
         {
             Console.WriteLine("Yuou have two ways of playing the game:\n" +
-                            "1: You will have changes according to the difficulty chosen. When you get out of chances, the game finishes." +
+                            "1: You will have changes according to the difficulty chosen. When you get out of chances, the game finishes.\n" +
                             "2: You decide when to stop.\n\n" +
                             "So, which way you want to play? (Please, type 1 or 2): ");
             gameMode = Int32.Parse(Console.ReadLine());
@@ -114,14 +114,17 @@ namespace NumberGuessingGame.GameLogic
                     if (number > myGuess) Console.WriteLine($"Incorrect! The number is greater than {myGuess}.");
                     else Console.WriteLine($"Incorrect! The number is less than {myGuess}.");
 
-                    Console.WriteLine("Do you want a hint?\n" +
-                        "YES: Press h\n" +
-                        "NO: Just press anything?");
+                    if (hintsAvailable > 0)
+                    {
+                        Console.WriteLine("Do you want a hint?\n" +
+                                            "YES: Press h\n" +
+                                            "NO: Just press anything?");
 
-                    hint = Console.ReadLine().ToLower();
+                        hint = Console.ReadLine().ToLower();
 
-                    if (hint == "h")
-                        Hints(number, myGuess);
+                        if (hint == "h")
+                            Hints(number, myGuess);
+                    }
 
                     if (gameMode == 2)
                     {
