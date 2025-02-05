@@ -9,9 +9,9 @@ namespace NumberGuessingGame.GameLogic
 {
     internal class Game
     {
-        private int difficultyLevel;
-        private int gameMode;
-        private int hintsAvailable = 2;
+        private int _difficultyLevel;
+        private int _gameMode;
+        private int _hintsAvailable = 2;
         public void GameStart() 
         {
             Console.WriteLine("Welcome to number guessing game!");
@@ -19,7 +19,7 @@ namespace NumberGuessingGame.GameLogic
 
             ChosenGameMode();
             
-            if (gameMode == (int)GameMode.ModeOne)
+            if (_gameMode == (int)Enums.GameMode.ModeOne)
             {
                 Console.WriteLine("You have chances according to the difficulty chosen to guess the correct number.\n\n" +
                     "Please select the difficult level");
@@ -36,21 +36,21 @@ namespace NumberGuessingGame.GameLogic
                             "1: You will have changes according to the difficulty chosen. When you get out of chances, the game finishes.\n" +
                             "2: You decide when to stop.\n\n" +
                             "So, which way you want to play? (Please, type 1 or 2): ");
-            gameMode = Int32.Parse(Console.ReadLine());
+            _gameMode = Int32.Parse(Console.ReadLine());
 
-            while (gameMode < 1 || gameMode > 2)
+            while (_gameMode < 1 || _gameMode > 2)
             {
                 Console.WriteLine("Invalid option. Please, you have to chose option 1 or 2: ");
 
-                gameMode = Int32.Parse(Console.ReadLine());
+                _gameMode = Int32.Parse(Console.ReadLine());
             }
         }
 
         private void GameDifficulty()
         {
-            Console.WriteLine($"1. EASY: ({(int)DifficultyLevel.Easy} chances)\n" +
-                    $"2. MEDIUM: ({(int)DifficultyLevel.Medium} chances)\n" +
-                    $"3. HARD: ({(int)DifficultyLevel.Hard} chances)");
+            Console.WriteLine($"1. EASY: ({(int)Enums.DifficultyLevel.Easy} chances)\n" +
+                    $"2. MEDIUM: ({(int)Enums.DifficultyLevel.Medium} chances)\n" +
+                    $"3. HARD: ({(int)Enums.DifficultyLevel.Hard} chances)");
 
             Console.WriteLine("\n\nEnter your choice: ");
 
@@ -66,9 +66,9 @@ namespace NumberGuessingGame.GameLogic
 
             switch (difficultyChosen)
             {
-                case 1: this.difficultyLevel = (int)DifficultyLevel.Easy; break;
-                case 2: this.difficultyLevel = (int)DifficultyLevel.Medium; break;
-                case 3: this.difficultyLevel = (int)DifficultyLevel.Hard; break;
+                case 1: this._difficultyLevel = (int)Enums.DifficultyLevel.Easy; break;
+                case 2: this._difficultyLevel = (int)Enums.DifficultyLevel.Medium; break;
+                case 3: this._difficultyLevel = (int)Enums.DifficultyLevel.Hard; break;
             }
         }
 
@@ -85,8 +85,8 @@ namespace NumberGuessingGame.GameLogic
             var stop = false;
             string choiceToStop, hint = "";
 
-            while (gameMode == (int)GameMode.ModeOne ? 
-                this.difficultyLevel >= guessCounter
+            while (_gameMode == (int)Enums.GameMode.ModeOne ? 
+                this._difficultyLevel >= guessCounter
                                     : !stop)
             {
                 Console.WriteLine("Enter your guess: ");
@@ -114,7 +114,7 @@ namespace NumberGuessingGame.GameLogic
                     if (number > myGuess) Console.WriteLine($"Incorrect! The number is greater than {myGuess}.");
                     else Console.WriteLine($"Incorrect! The number is less than {myGuess}.");
 
-                    if (hintsAvailable > 0)
+                    if (_hintsAvailable > 0)
                     {
                         Console.WriteLine("Do you want a hint?\n" +
                                             "YES: Press h\n" +
@@ -126,7 +126,7 @@ namespace NumberGuessingGame.GameLogic
                             Hints(number, myGuess);
                     }
 
-                    if (gameMode == 2)
+                    if (_gameMode == 2)
                     {
                         Console.WriteLine("Do you want to stop? If so type Y/y: ");
                         choiceToStop = Console.ReadLine().ToLower();
@@ -143,16 +143,16 @@ namespace NumberGuessingGame.GameLogic
 
         private void Hints(int rightNumber, int chosenNumber)
         {
-            if (hintsAvailable == 2)
+            if (_hintsAvailable == 2)
             {
                 if (rightNumber > 0 && rightNumber <= 50)
                     Console.WriteLine("My number is between 1 and 50");
                 else Console.WriteLine("My number is between 51 and 100");
 
-                hintsAvailable--;
+                _hintsAvailable--;
             }
 
-            else if (hintsAvailable == 1)
+            else if (_hintsAvailable == 1)
             {
                 if (rightNumber > 0 && rightNumber <= 25) Console.WriteLine("My number is among the first 25% of the total numbers.");
                 else if (rightNumber > 25 && rightNumber <= 50) Console.WriteLine("My number is in the bottom middle.");

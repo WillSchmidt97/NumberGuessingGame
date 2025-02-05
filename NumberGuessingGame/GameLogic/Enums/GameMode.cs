@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NumberGuessingGame.GameLogic
+namespace NumberGuessingGame.GameLogic.Enums
 {
     internal enum GameMode
     {
