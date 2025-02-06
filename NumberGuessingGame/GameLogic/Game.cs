@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Text.Json;
+using System.Text.Json.Nodes;
+using NumberGuessingGame.Models;
 
 namespace NumberGuessingGame.GameLogic
 {
@@ -11,6 +14,7 @@ namespace NumberGuessingGame.GameLogic
     {
         private int _difficultyLevel;
         private int _gameMode;
+        private int _guessCounter;
         private int _hintsAvailable = 2;
         public void GameStart() 
         {
@@ -28,17 +32,24 @@ namespace NumberGuessingGame.GameLogic
             }
 
             ProcessPlays();
+            
+            Console.WriteLine("Now that the game came to an end, tell us your name: ");
+            var name = Console.ReadLine();
+
+            // var playerStatus = SetPlayerStats(name);
+            // Console.WriteLine(playerStatus);
+            // Console.WriteLine("\nPress any key to continue...");
         }
 
-        public void ChosenGameMode()
+        private void ChosenGameMode()
         {
-            Console.WriteLine("Yuou have two ways of playing the game:\n" +
-                            "1: You will have changes according to the difficulty chosen. When you get out of chances, the game finishes.\n" +
+            Console.WriteLine("You have two ways of playing the game:\n" +
+                            "1: You will have chances according to the difficulty chosen. When you get out of chances, the game finishes.\n" +
                             "2: You decide when to stop.\n\n" +
                             "So, which way you want to play? (Please, type 1 or 2): ");
             _gameMode = Int32.Parse(Console.ReadLine());
 
-            while (_gameMode < 1 || _gameMode > 2)
+            while (_gameMode is < 1 or > 2)
             {
                 Console.WriteLine("Invalid option. Please, you have to chose option 1 or 2: ");
 
@@ -56,7 +67,7 @@ namespace NumberGuessingGame.GameLogic
 
             int difficultyChosen = Convert.ToInt32(Console.ReadLine());
 
-            while(difficultyChosen > 3 || difficultyChosen < 1)
+            while(difficultyChosen is > 3 or < 1)
             {
                 Console.WriteLine("\nInvalid option. Please type 1 for easy, 2 for medium or 3 for hard.\n" +
                     "Enter your choice: ");
@@ -79,14 +90,13 @@ namespace NumberGuessingGame.GameLogic
 
             Console.WriteLine("Let's start the game!");
             var time = Stopwatch.StartNew();
-
-            int guessCounter = 1;
+            
             bool isGuessed = false;
             var stop = false;
             string choiceToStop, hint = "";
 
             while (_gameMode == (int)Enums.GameMode.ModeOne ? 
-                this._difficultyLevel >= guessCounter
+                this._difficultyLevel >= _guessCounter
                                     : !stop)
             {
                 Console.WriteLine("Enter your guess: ");
@@ -104,7 +114,7 @@ namespace NumberGuessingGame.GameLogic
                     time.Stop();
                     int timeToGuess = (int)time.Elapsed.TotalSeconds;
 
-                    Console.WriteLine($"Congrat's! You guessed the correct number {number} in {guessCounter} atteempt(s)!" +
+                    Console.WriteLine($"Congrat's! You guessed the correct number {number} in {_guessCounter} atteempt(s)!" +
                                         $"It took {timeToGuess} seconds for you to guess the number.");
                     isGuessed = true;
                     break;
@@ -129,12 +139,12 @@ namespace NumberGuessingGame.GameLogic
                     if (_gameMode == 2)
                     {
                         Console.WriteLine("Do you want to stop? If so type Y/y: ");
-                        choiceToStop = Console.ReadLine().ToLower();
+                        choiceToStop = Console.ReadLine()!.ToLower();
 
                         if (choiceToStop == "y") stop = true;
                     }
 
-                    guessCounter++;
+                    _guessCounter++;
                 };
             }
 
@@ -161,5 +171,20 @@ namespace NumberGuessingGame.GameLogic
             }
 
         }
+
+        private string SetPlayerStats(string name)
+        {
+            var playerStats = new PlayerStats
+            {
+                PlayerName = name,
+                DifficultyLevel = _difficultyLevel,
+                Attempts = _guessCounter,
+                DatePlayed = DateTime.Now
+            };
+            
+            var data = JsonSerializer.Serialize(playerStats);
+
+            return data;
+        }  
     }
 }

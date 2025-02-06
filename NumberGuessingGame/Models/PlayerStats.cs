@@ -9,7 +9,7 @@ namespace NumberGuessingGame.Models
     internal class PlayerStats
     {
         public string PlayerName { get; set; }
-        public string DifficultyLevel { get; set; }
+        public int DifficultyLevel { get; set; }
         public int Attempts { get; set; }
         public DateTime DatePlayed { get; set; }
     }
