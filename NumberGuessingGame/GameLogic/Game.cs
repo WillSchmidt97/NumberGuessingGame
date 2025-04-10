@@ -36,7 +36,7 @@ namespace NumberGuessingGame.GameLogic
             Console.WriteLine("Now that the game came to an end, tell us your name: ");
             var name = Console.ReadLine();
 
-            // var playerStatus = SetPlayerStats(name);
+            var playerStatus = SetPlayerStats(name);
             // Console.WriteLine(playerStatus);
             // Console.WriteLine("\nPress any key to continue...");
         }
@@ -132,7 +132,7 @@ namespace NumberGuessingGame.GameLogic
 
                         hint = Console.ReadLine().ToLower();
 
-                        if (hint == "h")
+                        if (hint == "h") 
                             Hints(number, myGuess);
                     }
 
@@ -158,8 +158,6 @@ namespace NumberGuessingGame.GameLogic
                 if (rightNumber > 0 && rightNumber <= 50)
                     Console.WriteLine("My number is between 1 and 50");
                 else Console.WriteLine("My number is between 51 and 100");
-
-                _hintsAvailable--;
             }
 
             else if (_hintsAvailable == 1)
@@ -170,6 +168,7 @@ namespace NumberGuessingGame.GameLogic
                 else Console.WriteLine("My number is among the last 25% of the total numbers.");
             }
 
+            _hintsAvailable--;
         }
 
         private string SetPlayerStats(string name)
@@ -179,7 +178,7 @@ namespace NumberGuessingGame.GameLogic
                 PlayerName = name,
                 DifficultyLevel = _difficultyLevel,
                 Attempts = _guessCounter,
-                DatePlayed = DateTime.Now
+                DatePlayed = DateTime.Now.Date
             };
             
             var data = JsonSerializer.Serialize(playerStats);
